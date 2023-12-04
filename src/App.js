@@ -25,10 +25,20 @@ function App() {
   useEffect(() => {
     fetchNotification();
     // 
-    console.log('url', document.currentScript.getAttribute('src'))
-    var acc = new URL(document.currentScript.getAttribute('src')).searchParams.get("acc");
-    console.log('acc =====>', acc);
+    getScriptParam()
   }, [])
+
+  const getScriptParam = async() => {
+    var scripts = document.getElementsByTagName('script');
+    var currentScript = scripts[0];
+    
+    // in future, could just use the HTML5 standard dataset attribute instead: currentScript.dataset[attr]
+    let result=currentScript.src; 
+    const urlParams = new URL(result).searchParams;
+    const myParam = urlParams.get('acc'); 
+    console.log('acc =====>', myParam);
+    // return result
+  }
 
   useEffect(() => {
     setTimeout(() => {
