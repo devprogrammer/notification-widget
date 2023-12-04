@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
 
-  const currentUrl = useCurrentUrl()
+  const {pid, currentUrl} = useCurrentUrl()
 
   const [notifications, setNotifications] = useState([]);
   const [show, setShow] = useState(true);
@@ -33,15 +33,8 @@ function App() {
       setNotifications([...notifications, ..._n_filter])
     }
   }
-  const getPID = () => {
-    var _script = document.getElementsByTagName('script')[0];
-      if (!_script) return;
-      const myParam = new URL(_script.src).searchParams.get('acc');
-      return myParam
-  }
 
   const sendData = useCallback(async() => {
-    const pid = getPID();
     console.log("===url====", currentUrl)
     console.log("===pid====", pid)
 
