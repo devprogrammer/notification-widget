@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef } from "react"
 
 export const useCurrentUrl = () => {
-  // const [pid, setPid] = useState("");
-  const [currentUrl, setCurrentUrl] = useState(window.location.href);
-
-  const listenToPopstate = () => {
-    const winPath = window.location.href;
-    setCurrentUrl(winPath);
-  };
+  const urlRef = useRef('');
+  
   const getPID = () => {
     const _scripts = document.getElementsByTagName('script');
     let widgetJs = null;
@@ -27,14 +22,22 @@ export const useCurrentUrl = () => {
   }
   
   useEffect(() => {
-    window.addEventListener("popstate", listenToPopstate);
+    const observer = new MutationObserver((mutations) => {
+      console.log('currentUrl', urlRef.current)
+      if (window.location.href !== urlRef.current) {
+          urlRef.current = window.location.href;
+        }
+    });
+  
+    const config = {subtree: true, childList: true};
+    observer.observe(document, config);
     return () => {
-      window.removeEventListener("popstate", listenToPopstate);
+      observer.disconnect();
     };
   }, []);
 
   console.log("filteredScript ===>", getPID())
   const pid = getPID(); //maybe this?
 
-  return { pid, currentUrl };
+  return { pid, currentUrl: urlRef.current };
 }
