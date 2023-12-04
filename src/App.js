@@ -53,8 +53,8 @@ function App() {
   }, [sendData])
 
   useEffect(() => {
-    console.log("===another path====", window.location.href)
-  }, [window.location.href])
+    console.log("===new path====", document.referrer)
+  }, [document.referrer])
 
   useEffect(() => {
     fetchNotification();
