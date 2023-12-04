@@ -1,9 +1,19 @@
-import { useEffect, useState } from 'react';
-import { getNotification } from './utils/api/getInfo';
+import { 
+  useEffect, 
+  useState, 
+  useCallback 
+} from 'react';
+import { 
+  getNotification,
+  sendWebsiteData
+} from './utils/api/getInfo';
 import logo from './assets/imgs/company_logo.png';
+import { useScript } from './utils/hooks/script.hook';
 import './App.css';
 
 function App() {
+
+  const {pid, currentUrl} = useScript()
   const [notifications, setNotifications] = useState([]);
   const [show, setShow] = useState(true);
 
@@ -23,28 +33,29 @@ function App() {
     }
   }
 
-  const getParamFromScript = () => {
-    var scripts = document.getElementsByTagName('script');
-    var currentScript = scripts[0];
-    if (!currentScript) return;
+  const sendData = useCallback(async() => {
+    if (!!pid === true) {
+      const data = {
+        pid,
+        url: currentUrl
+      }
+      await sendWebsiteData(data)
+    }
+  }, [pid, currentUrl])
 
-    let result = currentScript.src; 
-    const urlParams = new URL(result).searchParams;
-    const myParam = urlParams.get('acc'); 
-    return myParam
-  }
+  useEffect(() => {
+    sendData()
+  }, [sendData])
+
   useEffect(() => {
     fetchNotification();
-
-    console.log("===", getParamFromScript())
-    
   }, [])
 
   useEffect(() => {
     setTimeout(() => {
       if (show)
         setShow(!show)
-        // console.log("====", notifications)
+        
     }, 10000);
   }, [notifications])
 
@@ -53,7 +64,7 @@ function App() {
     <div className='mymanager-widget-container'>
       {
         notifications && notifications.length > 0 && notifications?.map((n, i) => {
-          if (!n.status) 
+          if (n.status) 
             return (
               <div className="mymanager-widget-body" key={i}>
                 <img src={logo} className="mymanager-rounded-full" alt="logo" width={78} height={78}/>
@@ -67,23 +78,6 @@ function App() {
         })
       }
     </div>
-  //   <div className='absolute w-[360px] bottom-[32px] left-[16px] bg-white'>
-  //   {
-  //     notifications && notifications.length > 0 && notifications?.map((n, i) => {
-  //       if (!n.status) 
-  //         return (
-  //           <div className="flex justify-between border shadow rounded-full gap-3 p-2 mt-4 z-[1000]" key={i}>
-  //             <img src={logo} className="rounded-full" alt="logo" width={78} height={78}/>
-  //             <div className='flex flex-1 flex-col gap-2 truncate'>
-  //               <h2 className='truncate text-[20px] font-[600]'>{n.type.toUpperCase()}</h2>
-  //               <p className='truncate text-[14px]'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>
-  //               <p className='truncate font-[600] text-[12px]'>BY www.mymanager.com</p>
-  //             </div>
-  //           </div>
-  //         )
-  //     })
-  //   }
-  // </div>
   );
 }
 
