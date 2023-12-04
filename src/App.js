@@ -34,11 +34,12 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    if (!!pid === true) {
+    if (!!pid) {
       const data = {
         pid,
         url: currentUrl
       }
+      console.log("====data====", data)
       await sendWebsiteData(data)
     }
   }, [currentUrl, pid])

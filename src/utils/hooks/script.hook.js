@@ -22,7 +22,6 @@ export const useScript = () => {
       return myParam
   }
 
-  console.log("===currentUrl====", currentUrl)
   const pid = getPID()
   return {pid, currentUrl};
 }
