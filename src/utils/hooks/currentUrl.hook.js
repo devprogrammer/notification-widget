@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const useScript = () => {
+export const useCurrentUrl = () => {
   const [currentUrl, setCurrentUrl] = useState(window.location.href);
 
   const listenToPopstate = () => {

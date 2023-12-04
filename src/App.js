@@ -8,12 +8,13 @@ import {
   sendWebsiteData
 } from './utils/api/getInfo';
 import logo from './assets/imgs/company_logo.png';
-import { useScript } from './utils/hooks/script.hook';
+import { useCurrentUrl } from './utils/hooks/currentUrl.hook';
 import './App.css';
 
 function App() {
 
-  const currentUrl = useScript()
+  const currentUrl = useCurrentUrl()
+
   const [notifications, setNotifications] = useState([]);
   const [show, setShow] = useState(true);
 
@@ -38,11 +39,11 @@ function App() {
       const myParam = new URL(_script.src).searchParams.get('acc');
       return myParam
   }
-  
+
   const sendData = useCallback(async() => {
+    const pid = getPID();
     console.log("===url====", currentUrl)
     console.log("===pid====", pid)
-    const pid = getPID();
 
     if (!!pid) {
       const data = {
