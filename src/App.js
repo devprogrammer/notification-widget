@@ -35,9 +35,6 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    console.log("===url====", currentUrl)
-    console.log("===pid====", pid)
-
     if (!!pid) {
       const data = {
         pid,
@@ -49,6 +46,8 @@ function App() {
   }, [currentUrl])
 
   useEffect(() => {
+    console.log("===url====", currentUrl)
+    console.log("===pid====", pid)
     sendData()
   }, [sendData])
 
