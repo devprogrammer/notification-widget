@@ -39,6 +39,7 @@ function App() {
         pid,
         url: currentUrl
       }
+      console.log("===data====", data)
       await sendWebsiteData(data)
     }
   }, [pid, currentUrl])
