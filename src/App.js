@@ -50,23 +50,40 @@ function App() {
 
   // if (!show) return <></>
   return (
-    <div className='absolute w-90 bottom-8 left-4 bg-white'>
-      {
-        notifications && notifications.length > 0 && notifications?.map((n, i) => {
-          if (!n.status) 
-            return (
-              <div className="flex justify-between border shadow rounded-full gap-3 p-2 mt-4 z-[1000]" key={i}>
-                <img src={logo} className="rounded-full" alt="logo" width={78} height={78}/>
-                <div className='flex flex-1 flex-col gap-2 truncate'>
-                  <h2 className='truncate text-20 font-600'>{n.type.toUpperCase()}</h2>
-                  <p className='truncate text-14'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>
-                  <p className='truncate font-600 text-12'>BY www.mymanager.com</p>
-                </div>
+    // <div className='absolute w-90 bottom-8 left-4 bg-white'>
+    //   {
+    //     notifications && notifications.length > 0 && notifications?.map((n, i) => {
+    //       if (!n.status) 
+    //         return (
+    //           <div className="flex justify-between border shadow rounded-full gap-3 p-2 mt-4 z-[1000]" key={i}>
+    //             <img src={logo} className="rounded-full" alt="logo" width={78} height={78}/>
+    //             <div className='flex flex-1 flex-col gap-2 truncate'>
+    //               <h2 className='truncate text-20 font-600'>{n.type.toUpperCase()}</h2>
+    //               <p className='truncate text-14'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>
+    //               <p className='truncate font-600 text-12'>BY www.mymanager.com</p>
+    //             </div>
+    //           </div>
+    //         )
+    //     })
+    //   }
+    // </div>
+    <div className='absolute w-[360px] bottom-[32px] left-[16px] bg-white'>
+    {
+      notifications && notifications.length > 0 && notifications?.map((n, i) => {
+        if (!n.status) 
+          return (
+            <div className="flex justify-between border shadow rounded-full gap-3 p-2 mt-4 z-[1000]" key={i}>
+              <img src={logo} className="rounded-full" alt="logo" width={78} height={78}/>
+              <div className='flex flex-1 flex-col gap-2 truncate'>
+                <h2 className='truncate text-[20px] font-[600]'>{n.type.toUpperCase()}</h2>
+                <p className='truncate text-[14px]'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>
+                <p className='truncate font-[600] text-[12px]'>BY www.mymanager.com</p>
               </div>
-            )
-        })
-      }
-    </div>
+            </div>
+          )
+      })
+    }
+  </div>
   );
 }
 

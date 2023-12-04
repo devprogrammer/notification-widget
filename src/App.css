@@ -29,7 +29,7 @@
   color: #61dafb;
 }
 
-.absolute {
+/* .absolute {
   position: absolute;
 }
 .w-90 {
@@ -74,10 +74,10 @@
 .z-1000 {
   z-index: 1000;
 }
-.gap-2 {
+.gap-normal-2 {
   gap: 8px;
 }
-.gap-3 {
+.gap-normal-3 {
   gap: 12px;
 }
 .truncate {
@@ -99,7 +99,7 @@
 }
 .bg-white {
   background-color: white;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
