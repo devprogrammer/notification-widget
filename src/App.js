@@ -33,7 +33,7 @@ function App() {
     }
   }
 
-  const sendData = async() => {
+  const sendData = useCallback(async() => {
     if (!!pid === true) {
       const data = {
         pid,
@@ -42,11 +42,11 @@ function App() {
       console.log("===data====", data)
       await sendWebsiteData(data)
     }
-  }
+  }, [currentUrl, pid])
 
   useEffect(() => {
     sendData()
-  }, [pid, currentUrl])
+  }, [sendData])
 
   useEffect(() => {
     fetchNotification();
