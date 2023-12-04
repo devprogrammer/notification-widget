@@ -50,7 +50,7 @@ function App() {
 
   // if (!show) return <></>
   return (
-    <div className='absolute w-90 bottom-8 left-4'>
+    <div className='absolute w-90 bottom-8 left-4 bg-white'>
       {
         notifications && notifications.length > 0 && notifications?.map((n, i) => {
           if (!n.status) 
