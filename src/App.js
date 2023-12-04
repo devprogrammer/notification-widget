@@ -59,6 +59,10 @@ function App() {
   }, [sendData])
 
   useEffect(() => {
+    console.log("===another path====", window.location.href)
+  }, [window.location.href])
+
+  useEffect(() => {
     fetchNotification();
   }, [])
 
