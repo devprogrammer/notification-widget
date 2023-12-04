@@ -29,6 +29,76 @@
   color: #61dafb;
 }
 
+.absolute {
+  position: absolute;
+}
+.w-90 {
+  width: 360px;
+}
+.bottom-8 {
+  bottom: 32px;
+}
+.left-4 {
+  left: 16px;
+}
+.flex {
+  display: flex
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-col {
+  flex-direction: column;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.border {
+  border-width: 1px;
+}
+.shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.p-1 {
+  padding: 4px
+}
+.p-2 {
+  padding: 8px;
+}
+.mt-4 {
+  margin-top: 16px
+}
+.z-1000 {
+  z-index: 1000;
+}
+.gap-2 {
+  gap: 8px;
+}
+.gap-3 {
+  gap: 12px;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.font-600 {
+  font-weight: 600;
+}
+.text-12 {
+  font-size: 12px;
+}
+.text-14 {
+  font-size: 14px;
+}
+.text-20 {
+  font-size: 20px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

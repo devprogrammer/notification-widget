@@ -1,5 +1,6 @@
 {
   "name": "notification-widget",
+  "exports": "./dist/default.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:widget": "parcel build src/index.js --no-source-maps build/static/css/*.css widget/index.css"
+    "build:widget": "parcel build src/index.js --no-source-maps"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +41,8 @@
   "devDependencies": {
     "buffer": "^6.0.3",
     "parcel": "^2.10.3",
+    "postcss-preset-env": "^9.3.0",
+    "process": "^0.11.10",
     "tailwindcss": "^3.3.5"
-  }
+  }  
 }
