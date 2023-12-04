@@ -22,23 +22,26 @@ function App() {
       setNotifications([...notifications, ..._n_filter])
     }
   }
-  useEffect(() => {
-    fetchNotification();
-    // 
-    getScriptParam()
-  }, [])
 
   const getScriptParam = async() => {
     var scripts = document.getElementsByTagName('script');
     var currentScript = scripts[0];
     
     // in future, could just use the HTML5 standard dataset attribute instead: currentScript.dataset[attr]
-    let result=currentScript.src; 
+    let result = currentScript.src; 
     const urlParams = new URL(result).searchParams;
     const myParam = urlParams.get('acc'); 
     console.log('acc =====>', myParam);
     // return result
   }
+
+  useEffect(() => {
+    fetchNotification();
+    // 
+    getScriptParam()
+  }, [])
+
+  
 
   useEffect(() => {
     setTimeout(() => {
