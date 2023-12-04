@@ -9,10 +9,17 @@ export const useCurrentUrl = () => {
     setCurrentUrl(winPath);
   };
   const getPID = () => {
-    var _script = document.getElementsByTagName('script')[0];
-      if (!_script) return;
-      const myParam = new URL(_script.src).searchParams.get('acc');
-      return myParam
+    var _scripts = document.getElementsByTagName('script');
+    var filteredScript = _scripts?.find((item) => {
+      const src = item.getAttribute('src');
+
+      return src.includes('mymanager-notification-widget.netlify.app');
+      
+    });
+
+    if (!filteredScript) return null;
+
+    return new URL(filteredScript.getAttribute('src')).searchParams.get('acc');
   }
   
   useEffect(() => {
@@ -22,7 +29,8 @@ export const useCurrentUrl = () => {
     };
   }, []);
 
-  const pid = getPID();
+  console.log("filteredScript ===>", getPID)
+  const pid = null;
 
   return { pid, currentUrl };
 }
