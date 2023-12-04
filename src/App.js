@@ -23,22 +23,22 @@ function App() {
     }
   }
 
-  const getScriptParam = async() => {
+  const getScriptParam = () => {
     var scripts = document.getElementsByTagName('script');
-    var currentScript = scripts[0];
-    
-    // in future, could just use the HTML5 standard dataset attribute instead: currentScript.dataset[attr]
-    let result = currentScript.src; 
-    const urlParams = new URL(result).searchParams;
-    const myParam = urlParams.get('acc'); 
-    console.log('acc =====>', myParam);
-    // return result
+      var currentScript = scripts[0];
+      if (!currentScript) return;
+
+      let result = currentScript.src; 
+      const urlParams = new URL(result).searchParams;
+      const myParam = urlParams.get('acc'); 
+
+    return myParam
   }
 
   useEffect(() => {
     fetchNotification();
-    // 
-    getScriptParam()
+    
+    console.log("====", getScriptParam())
   }, [])
 
   
@@ -47,7 +47,7 @@ function App() {
     setTimeout(() => {
       if (show)
         setShow(!show)
-        console.log("====", notifications)
+        // console.log("====", notifications)
     }, 10000);
   }, [notifications])
 
