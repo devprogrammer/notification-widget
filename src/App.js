@@ -23,22 +23,9 @@ function App() {
     }
   }
 
-  const getScriptParam = () => {
-    var scripts = document.getElementsByTagName('script');
-      var currentScript = scripts[0];
-      if (!currentScript) return;
-
-      let result = currentScript.src; 
-      const urlParams = new URL(result).searchParams;
-      const myParam = urlParams.get('acc'); 
-
-    return myParam
-  }
 
   useEffect(() => {
     fetchNotification();
-    
-    console.log("====", getScriptParam())
   }, [])
 
   
