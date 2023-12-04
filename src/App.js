@@ -23,12 +23,9 @@ function App() {
     }
   }
 
-
   useEffect(() => {
     fetchNotification();
   }, [])
-
-  
 
   useEffect(() => {
     setTimeout(() => {
