@@ -21,7 +21,8 @@ export const useScript = () => {
       const myParam = new URL(_script.src).searchParams.get('acc');
       return myParam
   }
-  
+
+  console.log("===currentUrl====", currentUrl)
   const pid = getPID()
   return {pid, currentUrl};
 }
