@@ -35,8 +35,8 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    console.log("===url====", currentUrl)
-    console.log("===pid====", pid)
+    console.log("===url 1====", currentUrl)
+    console.log("===pid 1====", pid)
     if (!!pid) {
       const data = {
         pid,
