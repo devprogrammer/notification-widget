@@ -40,6 +40,7 @@ function App() {
   }
   
   const sendData = useCallback(async() => {
+    console.log("===url====", currentUrl)
     const pid = getPID();
 
     if (!!pid) {
