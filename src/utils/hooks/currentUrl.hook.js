@@ -28,7 +28,8 @@ export const useCurrentUrl = () => {
         if (mutation.target.getElementsByTagName("input").length > 0) {
           const inputFields = mutation.target.getElementsByTagName("input")
           for (let input of inputFields) {
-            const value = input.getAttribute("value")
+            const value = input.value
+            console.log("====input =====", input)
             console.log("===input values ====", value);
           }
         }
