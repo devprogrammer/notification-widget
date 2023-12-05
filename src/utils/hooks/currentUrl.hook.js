@@ -35,7 +35,6 @@ export const useCurrentUrl = () => {
       // }
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
-          console.log("urlref ====>", urlRef.current)
         }
     });
   
@@ -47,6 +46,7 @@ export const useCurrentUrl = () => {
   }, []);
 
   const pid = getPID(); //maybe this?
+  console.log("urlref ====>", urlRef.current)
 
   return { pid, currentUrl: urlRef.current };
 }
