@@ -50,7 +50,6 @@ export const useCurrentUrl = () => {
   }, []);
 
   const pid = getPID(); //maybe this?
-  console.log("curr url ====>", url)
 
   return { pid, currentUrl: url };
 }

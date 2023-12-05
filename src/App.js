@@ -3,18 +3,18 @@ import {
   useState, 
   useCallback 
 } from 'react';
+import GoogleMapReact from 'google-map-react';
 import { 
   getNotification,
   sendWebsiteData
 } from './utils/api/getInfo';
-import logo from './assets/imgs/company_logo.png';
 import { useCurrentUrl } from './utils/hooks/currentUrl.hook';
 import './App.css';
 
 function App() {
 
   const {pid, currentUrl} = useCurrentUrl()
-
+  const [pos, setPos] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [show, setShow] = useState(true);
 
@@ -35,7 +35,6 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    console.log("===url2=====", currentUrl)
     if (!!pid) {
       const data = {
         pid,
@@ -48,19 +47,22 @@ function App() {
 
   useEffect(() => {
     sendData()
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        var _pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }; 
+        setPos({..._pos}) 
+      })
+    }
   }, [sendData])
-
+  
   useEffect(() => {
     fetchNotification();
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (show)
-        setShow(!show)
-        // console.log("===notification===", notifications)
-    }, 10000);
-  }, [notifications])
+  const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   // if (!show) return <></>
   return (
@@ -70,7 +72,20 @@ function App() {
           if (n.status) 
             return (
               <div className="mymanager-widget-body" key={i}>
-                <img src={logo} className="mymanager-rounded-full" alt="logo" width={78} height={78}/>
+                <div className="mymanager-mapbox">
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ key: "AIzaSyBVrhAX-Kht3yDvmUCQHqMSeB1Qd7XVFq8" }}
+                    defaultCenter={pos}
+                    defaultZoom={11}
+                    // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                  >
+                    <AnyReactComponent
+                      lat={pos.lat}
+                      lng={pos.lng}
+                      text="My Marker"
+                    />
+                  </GoogleMapReact>
+                </div>
                 <div className='mymanager-text-content mymanager-truncate'>
                   <h2 className='mymanager-title mymanager-truncate'>{n.type.toUpperCase()}</h2>
                   <p className='mymanager-event-content mymanager-truncate'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>

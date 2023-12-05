@@ -48,8 +48,13 @@
   margin-top: 16px;
 }
 
-.mymanager-rounded-full {
+.mymanager-mapbox {
+  height: 78px;
+  width: 78px;
   border-radius: 9999px;
+}
+.mymanager-mapbox>div>div {
+  border-radius: 50%;
 }
 
 .mymanager-truncate {
