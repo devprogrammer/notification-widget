@@ -35,6 +35,7 @@ export const useCurrentUrl = () => {
       // }
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
+          console.log("urlref ====>", urlRef.current)
         }
     });
   
