@@ -35,6 +35,7 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
+    console.log("===url2=====", currentUrl)
     if (!!pid) {
       const data = {
         pid,
@@ -46,6 +47,7 @@ function App() {
   }, [currentUrl, pid])
 
   useEffect(() => {
+    console.log("===url1=====", currentUrl)
     sendData()
   }, [sendData])
 
@@ -57,7 +59,7 @@ function App() {
     setTimeout(() => {
       if (show)
         setShow(!show)
-        console.log("===notification===", notifications)
+        // console.log("===notification===", notifications)
     }, 10000);
   }, [notifications])
 

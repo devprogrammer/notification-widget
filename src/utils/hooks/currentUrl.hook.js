@@ -23,18 +23,16 @@ export const useCurrentUrl = () => {
   
   useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
-      for(let mutation of mutationsList){
-        // console.log("mutations====", mutation.target);
-        if (mutation.target.getElementsByTagName("input").length > 0) {
-          const inputFields = mutation.target.getElementsByTagName("input")
-          for (let input of inputFields) {
-            const value = input.value
-            console.log("====input =====", input)
-            console.log("===input values ====", value);
-          }
-        }
-      }
-      console.log('currentUrl', urlRef.current)
+      // for(let mutation of mutationsList){
+      //   if (mutation.target.getElementsByTagName("input").length > 0) {
+      //     const inputFields = mutation.target.getElementsByTagName("input")
+      //     for (let input of inputFields) {
+      //       const value = input.value
+      //       console.log("====input =====", input)
+      //       console.log("===input values ====", value);
+      //     }
+      //   }
+      // }
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
         }
