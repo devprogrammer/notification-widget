@@ -4,15 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// const root = ReactDOM.createRoot(document.getElementById('gamestop'));
-const currElement = document.querySelector("mymanager-notification-widget")
-if (!currElement) {
-  const rootDiv = document.createElement("div")
-  rootDiv.setAttribute("id", "mymanager-notification-widget")
-} 
+const root = ReactDOM.createRoot(document.getElementById('gamestop'));
+// const body = document.querySelector("body")
+// const currElement = body.querySelector("#mymanager-notification-widget")
+// if (!currElement) {
+//   const rootDiv = document.createElement("div")
+//   rootDiv.setAttribute("id", "mymanager-notification-widget")
+// } 
 
-const root = ReactDOM.createRoot(document.getElementById('mymanager-notification-widget'));
-// const widgetDiv = document.querySelector('.mymanager-notification-widget');
+// const root = ReactDOM.createRoot(document.getElementById('mymanager-notification-widget'));
 
 root.render(
   <React.StrictMode>
