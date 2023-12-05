@@ -23,8 +23,9 @@ export const useCurrentUrl = () => {
   
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
-      console.log("mutations ===>", mutations)
-      console.log('currentUrl', urlRef.current)
+      for(let mutation of mutationsList){
+        console.log("mutations====", mutation.target);
+      }
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
         }
