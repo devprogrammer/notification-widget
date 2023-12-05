@@ -22,7 +22,7 @@ export const useCurrentUrl = () => {
   }
   
   useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver((mutationsList) => {
       for(let mutation of mutationsList){
         console.log("mutations====", mutation.target);
       }
