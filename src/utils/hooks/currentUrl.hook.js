@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const useCurrentUrl = () => {
   const urlRef = useRef('');
+  const [url, SetUrl] = useState("");
   
   const getPID = () => {
     const _scripts = document.getElementsByTagName('script');
@@ -33,9 +34,12 @@ export const useCurrentUrl = () => {
       //     }
       //   }
       // }
-      if (window.location.href !== urlRef.current) {
-          urlRef.current = window.location.href;
-        }
+      if (window.location.href !== url) {
+        SetUrl(window.location.href);
+      }
+      // if (window.location.href !== urlRef.current) {
+      //   urlRef.current = window.location.href;
+      // }
     });
   
     const config = {subtree: true, childList: true};
@@ -46,7 +50,7 @@ export const useCurrentUrl = () => {
   }, []);
 
   const pid = getPID(); //maybe this?
-  console.log("urlref ====>", urlRef.current)
+  console.log("curr url ====>", url)
 
-  return { pid, currentUrl: urlRef.current };
+  return { pid, currentUrl: url };
 }
