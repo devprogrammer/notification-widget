@@ -35,8 +35,6 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    console.log("===url 2====", currentUrl)
-    console.log("===pid 2====", pid)
     if (!!pid) {
       const data = {
         pid,
@@ -52,10 +50,6 @@ function App() {
   }, [sendData])
 
   useEffect(() => {
-    console.log("===new path====", document.referrer)
-  }, [document.referrer])
-
-  useEffect(() => {
     fetchNotification();
   }, [])
 
@@ -63,7 +57,7 @@ function App() {
     setTimeout(() => {
       if (show)
         setShow(!show)
-        
+        console.log("===notification===", notifications)
     }, 10000);
   }, [notifications])
 

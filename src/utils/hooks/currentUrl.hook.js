@@ -23,6 +23,7 @@ export const useCurrentUrl = () => {
   
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
+      console.log("mutations ===>", mutations)
       console.log('currentUrl', urlRef.current)
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
@@ -36,7 +37,6 @@ export const useCurrentUrl = () => {
     };
   }, []);
 
-  console.log("filteredScript ===>", getPID())
   const pid = getPID(); //maybe this?
 
   return { pid, currentUrl: urlRef.current };
