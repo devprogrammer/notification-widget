@@ -11,7 +11,7 @@ if (!currElement) {
   rootDiv.setAttribute("id", "mymanager-notification-widget")
 } 
 
-const root = ReactDOM.createRoot(document.getElementsById('mymanager-notification-widget'));
+const root = ReactDOM.createRoot(document.getElementById('mymanager-notification-widget'));
 // const widgetDiv = document.querySelector('.mymanager-notification-widget');
 
 root.render(
