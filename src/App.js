@@ -35,7 +35,7 @@ function App() {
   }
 
   const sendData = useCallback(async() => {
-    console.log("===url2=====", currentUrl)
+    
     if (!!pid) {
       const data = {
         pid,
@@ -47,9 +47,12 @@ function App() {
   }, [currentUrl, pid])
 
   useEffect(() => {
-    console.log("===url1=====", currentUrl)
     sendData()
   }, [sendData])
+
+  useEffect(() => {
+    console.log("===url2=====", currentUrl)
+  }, [currentUrl, pid])
 
   useEffect(() => {
     fetchNotification();
