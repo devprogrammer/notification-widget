@@ -24,7 +24,14 @@ export const useCurrentUrl = () => {
   useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
       for(let mutation of mutationsList){
-        console.log("mutations====", mutation.target);
+        // console.log("mutations====", mutation.target);
+        if (mutation.target.getElementsByTagName("input").length > 0) {
+          const inputFields = mutation.target.getElementsByTagName("input")
+          for (let input of inputFields) {
+            const value = input.getAttribute("value")
+            console.log("===input values ====", value);
+          }
+        }
       }
       console.log('currentUrl', urlRef.current)
       if (window.location.href !== urlRef.current) {
