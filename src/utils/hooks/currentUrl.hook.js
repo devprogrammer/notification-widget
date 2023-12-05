@@ -26,6 +26,7 @@ export const useCurrentUrl = () => {
       for(let mutation of mutationsList){
         console.log("mutations====", mutation.target);
       }
+      console.log('currentUrl', urlRef.current)
       if (window.location.href !== urlRef.current) {
           urlRef.current = window.location.href;
         }
