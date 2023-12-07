@@ -45,10 +45,10 @@ export const NotificationWrapper = ({notifications, pos}) => {
     setInterval(() => {
       setShownAlert(notiArr[0])
       if (notiArr.length < 1)
-        return;
+        return () => clearInterval();
       setNotiArr([...notiArr].slice(1, notiArr.length))
     }, 3000)
-    return () => clearInterval();
+    console.log("==noarr ====", shownAlert)
   }, [])
 
   if (!shownAlert) return <></>
