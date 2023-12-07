@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react"
 
 export const useCurrentUrl = () => {
   const urlRef = useRef('');
-  const [url, SetUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState("");
+  const [originUrl, setOriginUrl] = useState("")
   
   const getPID = () => {
     const _scripts = document.getElementsByTagName('script');
@@ -10,7 +11,6 @@ export const useCurrentUrl = () => {
 
     for (let i = 0; i < _scripts.length; i++) {
       const src = _scripts[i].getAttribute('src');
-
       if(src.includes('mymanager-notification-widget.netlify.app')) {
         widgetJs = _scripts[i];
         break;
@@ -18,7 +18,6 @@ export const useCurrentUrl = () => {
     }
 
     if (!widgetJs) return null;
-
     return new URL(widgetJs.getAttribute('src')).searchParams.get('acc');
   }
   
@@ -34,22 +33,25 @@ export const useCurrentUrl = () => {
       //     }
       //   }
       // }
-      if (window.location.href !== url) {
-        SetUrl(window.location.href);
+      if (window.location.href !== currentUrl) {
+        setCurrentUrl(window.location.href);
+      }
+      if (window.location.origin !== originUrl) {
+        setOriginUrl(window.location.origin);
       }
       // if (window.location.href !== urlRef.current) {
-      //   urlRef.current = window.location.href;
-      // }
+        //   urlRef.current = window.location.href;
+        // }
     });
-  
+      
     const config = {subtree: true, childList: true};
     observer.observe(document, config);
     return () => {
       observer.disconnect();
     };
   }, []);
-
+    
   const pid = getPID(); //maybe this?
 
-  return { pid, currentUrl: url };
+  return { pid, currentUrl, originUrl };
 }

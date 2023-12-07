@@ -1,22 +1,19 @@
-import { 
-  useEffect, 
-  useState, 
-  useCallback 
-} from 'react';
-
-import { 
-  getNotification,
-  sendWebsiteData
-} from './utils/api/getInfo';
+import socketio from 'socket.io-client';
+import { useEffect, useState, useCallback, useContext } from 'react';
+import { getNotification, sendWebsiteData } from './utils/api/getInfo';
 import { useCurrentUrl } from './utils/hooks/currentUrl.hook';
 import './App.css';
 import { filterActiveNotifications } from './utils/functions';
 import { NotificationWrapper } from './components/notification';
 
+const REACT_APP_API = "http://localhost:5002/api"
+const socket = socketio(REACT_APP_API);
+
 function App() {
-  const {pid, currentUrl} = useCurrentUrl()
+  const {pid, currentUrl, originUrl} = useCurrentUrl()
   const [pos, setPos] = useState(null);
-  const [notifications, setNotifications] = useState([]);
+  const [notification, setNotification] = useState(null)
+  const [ntfsetting, setNtfsetting] = useState(null);
 
   const fetchNotification = useCallback(async() => {
     if (!!pid === false)
@@ -27,31 +24,21 @@ function App() {
     const n_info = filterActiveNotifications(data, currentUrl)
   
     if (!n_info) return;
-    const notification = n_info.notification;
-
-    if (Object.keys(notification).length < 1)
-      return;
-    
-    const _n = Object.keys(notification).map((key) => {
-      if (typeof notification[key] === 'object') {
-        return notification[key]          
-      }
-    })
-    const _n_filter = _n.filter((item) => item !== undefined);
-    setNotifications([...notifications, ..._n_filter])
+    const _notification = n_info.notification;
+    setNtfsetting({..._notification})
   }, [currentUrl, pid])
   
   // send data to mymanager server
   const sendData = useCallback(async() => {
-    console.log("*-****-*", currentUrl)
-    if (!!pid) {
+    if (!!pid && pos) {
       const data = {
         pid,
         url: currentUrl,
-        originUrl: window.location.origin,
-        position: pos.toString()
+        originUrl,
+        position: `${pos?.lat} + ${pos?.lng}`
       }
-      console.log("=*==data==*=", data)
+      // test socket
+      socket.emit('visit-website', data);
       await sendWebsiteData(data)
     }
   }, [currentUrl, pid])
@@ -73,10 +60,35 @@ function App() {
     fetchNotification();
   }, [fetchNotification])
 
-  if (notifications.length < 1) return <></>
-  return (
-    <NotificationWrapper notifications={notifications} pos={pos} />
-  );
+  ///////////////////////////////////////////////////////////////////////////
+  /////////////////////////////// socket ////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    socket.connect();
+
+    const onAddActivityEvent = (data) => {
+      console.log("==received===", data);
+      setNotification({...data})
+    }
+    socket.on('added-activity', onAddActivityEvent)
+    return () => {
+      socket.off('added-activity')
+    }
+  }, [socket])
+
+  /////////////////////////////////////////////////////////////////////////////
+  if (ntfsetting) {
+    const {recent_activity, live_visitor_activity, hot_stake_activity} = ntfsetting
+    if (!recent_activity.status && !live_visitor_activity.status && !hot_stake_activity.status) {
+      return <></>
+    } else {
+      return (
+        <NotificationWrapper settings={ntfsetting} notification={notification}/>
+      );
+    }
+  } 
+  
+  return <></>
 }
 
 export default App;

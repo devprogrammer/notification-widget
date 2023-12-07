@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('gamestop'));
 root.render(
   <React.StrictMode>
     {/* <App symbol={widgetDiv?.dataset.symbol}/> */}
-    <App />
+      <App />
   </React.StrictMode>
 );
 

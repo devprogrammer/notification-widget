@@ -39,18 +39,20 @@
 .mymanager-widget-body {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid rgb(0 0 0 / 0.2);
   background-color: white;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   border-radius: 9999px;
-  gap: 12px;
-  padding: 8px;
+  gap: 24px;
+  padding: 8px 16px;
   margin-top: 16px;
+  height: 80px;
 }
 
 .mymanager-mapbox {
-  height: 78px;
-  width: 78px;
+  height: 70px;
+  width: 70px;
   border-radius: 9999px;
 }
 .mymanager-mapbox>div>div {
@@ -72,8 +74,8 @@
 }
 
 .mymanager-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .mymanager-event-content {
