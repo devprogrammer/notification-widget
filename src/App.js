@@ -45,7 +45,7 @@ function App() {
         pid,
         url: currentUrl,
         originUrl: window.location.origin,
-        position: pos
+        position: pos.toString()
       }
       await sendWebsiteData(data)
     }
