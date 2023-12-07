@@ -17,29 +17,41 @@ function App() {
   const {pid, currentUrl} = useCurrentUrl()
   const [pos, setPos] = useState(null);
   const [notifications, setNotifications] = useState([]);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
-  const fetchNotification = async(pid) => {
-    const res = await getNotification(pid)
+  const fetchNotification = useCallback(async() => {
+    if (!!pid === false)
+      return;
+
+    const res = await getNotification()
     const { data } = res.data;
     const n_info = filterActiveNotifications(data, currentUrl)
     
     if (!n_info) return;
     const notification = n_info.notification;
 
-    if (Object.keys(notification).length > 0) {
-      const _n = Object.keys(notification).map((key) => {
-        if (typeof notification[key] === 'object') {
-          return notification[key]          
-        }
-      })
-      const _n_filter = _n.filter((item) => item !== undefined);
-      setNotifications([...notifications, ..._n_filter])
-    }
-  }
+    if (Object.keys(notification).length < 1)
+      return;
+    
+    const _n = Object.keys(notification).map((key) => {
+      if (typeof notification[key] === 'object') {
+        return notification[key]          
+      }
+    })
+    const _n_filter = _n.filter((item) => item !== undefined);
+    setNotifications([...notifications, ..._n_filter])
+
+    setShow(true)
+    setTimeout(() => {
+      setShow(false)
+      clearTimeout()
+    }, [5000])
+    
+  }, [currentUrl, pid])
   
   // send data to mymanager server
   const sendData = useCallback(async() => {
+    console.log("******", currentUrl)
     if (!!pid) {
       const data = {
         pid,
@@ -66,12 +78,13 @@ function App() {
   }, [sendData])
   
   useEffect(() => {
-    pid && fetchNotification(pid);
-  }, [])
+    fetchNotification();
+  }, [fetchNotification])
 
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-  // if (!show) return <></>
+  if (!show) return <></>
+  
   return (
     <div className='mymanager-widget-container'>
       {
