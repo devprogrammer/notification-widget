@@ -23,7 +23,7 @@ function App() {
     if (!!pid === false)
       return;
 
-    const res = await getNotification()
+    const res = await getNotification(pid)
     const { data } = res.data;
     const n_info = filterActiveNotifications(data, currentUrl)
     
@@ -51,7 +51,7 @@ function App() {
   
   // send data to mymanager server
   const sendData = useCallback(async() => {
-    console.log("******", currentUrl)
+    console.log("*-****-*", currentUrl)
     if (!!pid) {
       const data = {
         pid,
@@ -84,7 +84,7 @@ function App() {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   if (!show) return <></>
-  
+
   return (
     <div className='mymanager-widget-container'>
       {
