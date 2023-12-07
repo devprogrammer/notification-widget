@@ -35,9 +35,6 @@ export const NotificationWrapper = ({notifications, pos}) => {
     </div>
   )
 
- notifications.map((item) => {
-  if (item.status) {
-    return NotificationContainer
-  }
- })
+ 
+  notifications.filter((item) => item.status)?.map((_n) => NotificationContainer(_n))
 }
