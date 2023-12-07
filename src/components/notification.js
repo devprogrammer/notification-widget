@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 
 export const NotificationWrapper = ({notifications, pos}) => {
-
+  console.log("notification ===>", notifications)
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   return (
     <>
