@@ -75,7 +75,7 @@ function App() {
 
   if (notifications.length < 1) return <></>
   return (
-    <NotificationWrapper item={notifications} pos={pos} />
+    <NotificationWrapper notifications={notifications} pos={pos} />
   );
 }
 
