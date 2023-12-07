@@ -14,11 +14,9 @@ import { filterActiveNotifications } from './utils/functions';
 import { NotificationWrapper } from './components/notification';
 
 function App() {
-
   const {pid, currentUrl} = useCurrentUrl()
   const [pos, setPos] = useState(null);
   const [notifications, setNotifications] = useState([]);
-  const [show, setShow] = useState(false);
 
   const fetchNotification = useCallback(async() => {
     if (!!pid === false)
@@ -27,7 +25,7 @@ function App() {
     const res = await getNotification(pid)
     const { data } = res.data;
     const n_info = filterActiveNotifications(data, currentUrl)
-    
+  
     if (!n_info) return;
     const notification = n_info.notification;
 
@@ -41,13 +39,6 @@ function App() {
     })
     const _n_filter = _n.filter((item) => item !== undefined);
     setNotifications([...notifications, ..._n_filter])
-
-    setShow(true)
-    setTimeout(() => {
-      setShow(false)
-      clearTimeout()
-    }, [5000])
-    
   }, [currentUrl, pid])
   
   // send data to mymanager server
@@ -82,40 +73,9 @@ function App() {
     fetchNotification();
   }, [fetchNotification])
 
-  if (!show) return <></>
-
+  if (notifications.length < 1) return <></>
   return (
-    <div className='mymanager-widget-container'>
-      {
-        notifications && notifications.length > 0 && notifications?.map((n, i) => {
-          if (n.status) 
-            return (
-              <NotificationWrapper item={n} pos={pos} key={i}/>
-              // <div className="mymanager-widget-body" key={i}>
-              //   <div className="mymanager-mapbox">
-              //     <GoogleMapReact
-              //       bootstrapURLKeys={{ key: "AIzaSyBVrhAX-Kht3yDvmUCQHqMSeB1Qd7XVFq8" }}
-              //       defaultCenter={pos}
-              //       defaultZoom={11}
-              //       // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-              //     >
-              //       <AnyReactComponent
-              //         lat={pos.lat}
-              //         lng={pos.lng}
-              //         text="My Marker"
-              //       />
-              //     </GoogleMapReact>
-              //   </div>
-              //   <div className='mymanager-text-content mymanager-truncate'>
-              //     <h2 className='mymanager-title mymanager-truncate'>{n.type.toUpperCase()}</h2>
-              //     <p className='mymanager-event-content mymanager-truncate'>{n?.msg || `VISITORS: ${n?.message_visitors}`}</p>
-              //     <p className='mymanager-company mymanager-truncate'>BY www.mymanager.com</p>
-              //   </div>
-              // </div>
-            )
-        })
-      }
-    </div>
+    <NotificationWrapper item={notifications} pos={pos} />
   );
 }
 
