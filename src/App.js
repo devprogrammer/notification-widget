@@ -10,6 +10,7 @@ import {
 } from './utils/api/getInfo';
 import { useCurrentUrl } from './utils/hooks/currentUrl.hook';
 import './App.css';
+import { filterActiveNotifications } from './utils/functions';
 
 function App() {
 
@@ -18,13 +19,16 @@ function App() {
   const [notifications, setNotifications] = useState([]);
   const [show, setShow] = useState(true);
 
-  const fetchNotification = async() => {
-    const res = await getNotification("r")
+  const fetchNotification = async(pid) => {
+    const res = await getNotification(pid)
     const { data } = res.data;
-    const { notification } = data;
+    const n_info = filterActiveNotifications(data, currentUrl)
+    
+    if (!n_info) return;
+    const notification = n_info.notification;
 
     if (Object.keys(notification).length > 0) {
-      const _n = Object.keys(notification).map((key, index) => {
+      const _n = Object.keys(notification).map((key) => {
         if (typeof notification[key] === 'object') {
           return notification[key]          
         }
@@ -33,20 +37,21 @@ function App() {
       setNotifications([...notifications, ..._n_filter])
     }
   }
-
+  
+  // send data to mymanager server
   const sendData = useCallback(async() => {
-    if (!!pid) {
+    if (!!pid && pos) {
       const data = {
         pid,
-        url: currentUrl
+        url: currentUrl,
+        originUrl: window.location.origin,
+        position: pos
       }
-      console.log("====data====", data)
       await sendWebsiteData(data)
     }
   }, [currentUrl, pid])
 
   useEffect(() => {
-    sendData()
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         var _pos = {
@@ -56,10 +61,11 @@ function App() {
         setPos({..._pos}) 
       })
     }
+    sendData()
   }, [sendData])
   
   useEffect(() => {
-    fetchNotification();
+    pid && fetchNotification(pid);
   }, [])
 
   const AnyReactComponent = ({ text }) => <div>{text}</div>;

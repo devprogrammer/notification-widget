@@ -1,7 +1,7 @@
 import http from "../http";
 
-export const getNotification = (name) => {
-  return http.get(`/social-proof-campaign/get-notification/${name}`)
+export const getNotification = (pixelId) => {
+  return http.get(`/social-proof-campaign/get-notification/${pixelId}`)
 }
 
 export const sendWebsiteData = (data) => {
