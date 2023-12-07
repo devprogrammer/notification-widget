@@ -40,13 +40,14 @@ function App() {
   
   // send data to mymanager server
   const sendData = useCallback(async() => {
-    if (!!pid && pos) {
+    if (!!pid) {
       const data = {
         pid,
         url: currentUrl,
         originUrl: window.location.origin,
         position: pos.toString()
       }
+      console.log("===data===", data)
       await sendWebsiteData(data)
     }
   }, [currentUrl, pid])
