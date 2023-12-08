@@ -21,6 +21,7 @@ export const mymanagerWidgetBody = {
 export const mymanagerMapbox = {
   height: 70,
   width: 70,
+  position: "relative",
   borderRadius: 9999,
 }
 
@@ -28,7 +29,7 @@ export const mymanagerTruncate = {
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
-  margin: "0 !important",
+  margin: "0px !important",
 }
 
 export const mymanagerTextContent = {
