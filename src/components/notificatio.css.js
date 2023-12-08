@@ -26,8 +26,8 @@ export const mymanagerMapbox = {
 }
 
 export const mymanagerTruncate = {
-  maring: `${0} !important`,
-  color: 'red',
+  margin: `${0} !important`,
+  color: 'green',
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
