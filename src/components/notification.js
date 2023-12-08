@@ -47,6 +47,28 @@ export const NotificationWrapper = ({settings, notification}) => {
       setInfo({...newMsg})
     }
   }, [notification])
+
+  // Return map bounds based on list of places
+  // const getMapBounds = (map, maps, places) => {
+  //   const bounds = new maps.LatLngBounds();
+
+  //   places.forEach((place) => {
+  //     bounds.extend(new maps.LatLng(
+  //       place.geometry.location.lat,
+  //       place.geometry.location.lng,
+  //     ));
+  //   });
+  //   return bounds;
+  // };
+
+
+  // const apiIsLoaded = (map, maps, places) => {
+  //   // Get bounds by our places
+  //   const bounds = getMapBounds(map, maps, places);
+  //   // Fit map to bounds
+  //   map.fitBounds(bounds);
+  //   // Bind the resize listener
+  // };
   
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   if (!info) return <></>
@@ -81,13 +103,13 @@ export const NotificationWrapper = ({settings, notification}) => {
             bootstrapURLKeys={{ key: "AIzaSyBUSVulzSzbfl45dgmM8lWUQanfMz4Fb9o" }}
             defaultCenter={pos}
             defaultZoom={11}
-            // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+            // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, places)}
             style={{borderRadius: "50%"}}
           >
             <AnyReactComponent
               lat={pos.lat}
               lng={pos.lng}
-              text="My Marker"
+              text="City"
             />
           </GoogleMapReact>
         </div>

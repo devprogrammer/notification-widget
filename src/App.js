@@ -86,12 +86,12 @@ function App() {
     if (notification) {
       setTimeout(() => {
         setNotification(null)
-      }, 6000)
+      }, 800000)
       return () => clearTimeout()
     }
   }, [notification])
 
-  
+
   if (ntfsetting && notification) {
     const {recent_activity, live_visitor_activity, hot_stake_activity} = ntfsetting
     if (!recent_activity.status && !live_visitor_activity.status && !hot_stake_activity.status) {
