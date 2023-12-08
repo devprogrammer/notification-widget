@@ -69,19 +69,22 @@ function App() {
   ///////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     socket.connect();
-
+  
     const onAddActivityEvent = (data) => {
       console.log("=**==received=**==", data);
       setNotification({...data})
-      setTimeout(() => setNotification(null), 6000)
+      initNotification()
     }
     socket.on('added-activity', onAddActivityEvent)
     return () => {
       socket.off('added-activity')
-      clearTimeout()
     }
   }, [socket])
 
+  const initNotification = () => {
+    setTimeout(() => setNotification(null), 6000)
+    return () => clearTimeout()
+  }
   console.log("====settings ======", ntfsetting)
   /////////////////////////////////////////////////////////////////////////////
   if (ntfsetting) {
