@@ -41,18 +41,15 @@ export const mymanagerTextContent = {
 export const mymanagerTitle = {
   fontSize: "16px",
   fontWeight: 700,
-  marginBottom: "0px !important"
 }
 
 export const mymanagerEventContent = {
   fontSize: "14px",
   fontWeight: 600,
-  marginBottom: "0px !important"
 }
 
 export const mymanagerCompany = {
   fontSize: "12px",
   fontWeight: 600,
-  marginBottom: "0px !important"
 }
 
