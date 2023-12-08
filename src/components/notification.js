@@ -78,7 +78,7 @@ export const NotificationWrapper = ({settings, notification}) => {
       <div style={mymanagerWidgetBody}>
         <div style={mymanagerMapbox}>
           <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyBVrhAX-Kht3yDvmUCQHqMSeB1Qd7XVFq8" }}
+            bootstrapURLKeys={{ key: "AIzaSyBUSVulzSzbfl45dgmM8lWUQanfMz4Fb9o" }}
             defaultCenter={pos}
             defaultZoom={11}
             // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}

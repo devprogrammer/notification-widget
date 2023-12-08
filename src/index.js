@@ -5,17 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-// const root = ReactDOM.createRoot(document.getElementById('gamestop'));
+const root = ReactDOM.createRoot(document.getElementById('gamestop'));
 
-// root.render(
-//   <React.StrictMode>
-//     {/* <App symbol={widgetDiv?.dataset.symbol}/> */}
-//       <App />
-//   </React.StrictMode>
-// );
+root.render(
+  <React.StrictMode>
+    {/* <App symbol={widgetDiv?.dataset.symbol}/> */}
+      <App />
+  </React.StrictMode>
+);
 
-ReactDOM.render(<App />,         
-  document.body.appendChild(document.createElement("div")));
+// ReactDOM.render(<App />,         
+// document.body.appendChild(document.createElement("div")));
 
 // // If you want to start measuring performance in your app, pass a function
 // // to log results (for example: reportWebVitals(console.log))
