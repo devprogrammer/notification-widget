@@ -1,7 +1,15 @@
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useState } from 'react';
 import { getLatLng } from '../utils/functions';
-import { mymanagerTextContent, mymanagerWidgetBody, mymanagerWidgetContainer, mymanagerTruncate, mymanagerTitle } from './notificatio.css';
+import { 
+  mymanagerTextContent, 
+  mymanagerWidgetBody, 
+  mymanagerWidgetContainer, 
+  mymanagerTruncate, 
+  mymanagerTitle,
+  mymanagerEventContent,
+  mymanagerCompany
+} from './notificatio.css';
 
 
 export const NotificationWrapper = ({settings, notification}) => {
