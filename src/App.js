@@ -76,6 +76,7 @@ function App() {
     }
   }, [socket])
 
+  console.log("====settings ======", ntfsetting)
   /////////////////////////////////////////////////////////////////////////////
   if (ntfsetting) {
     const {recent_activity, live_visitor_activity, hot_stake_activity} = ntfsetting
