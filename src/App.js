@@ -67,7 +67,7 @@ function App() {
     socket.connect();
 
     const onAddActivityEvent = (data) => {
-      console.log("==received===", data);
+      console.log("=**=received=**==", data);
       setNotification({...data})
     }
     socket.on('added-activity', onAddActivityEvent)
