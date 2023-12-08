@@ -4,11 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-(function() {
-  // the DOM will be available here
-  ReactDOM.render(<App />,         
-  document.body.appendChild(document.createElement("div")));
-})();
 
 // const root = ReactDOM.createRoot(document.getElementById('gamestop'));
 
@@ -18,6 +13,9 @@ import reportWebVitals from './reportWebVitals';
 //       <App />
 //   </React.StrictMode>
 // );
+
+ReactDOM.render(<App />,         
+  document.body.appendChild(document.createElement("div")));
 
 // // If you want to start measuring performance in your app, pass a function
 // // to log results (for example: reportWebVitals(console.log))
