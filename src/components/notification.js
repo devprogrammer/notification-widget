@@ -6,6 +6,7 @@ import {
   mymanagerWidgetBody, 
   mymanagerWidgetContainer, 
   mymanagerTruncate, 
+  mymanagerMapbox,
   mymanagerTitle,
   mymanagerEventContent,
   mymanagerCompany
@@ -51,7 +52,7 @@ export const NotificationWrapper = ({settings, notification}) => {
   
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   if (!info) return <></>
-  {/*<div className='mymanager-widget-container' style={{marginTop: '20px'}}>
+  {/*<div className='mymanager-widget-container'>
      <div className="mymanager-widget-body">
       <div className="mymanager-mapbox">
         <GoogleMapReact
@@ -77,7 +78,7 @@ export const NotificationWrapper = ({settings, notification}) => {
   return (
     <div style={mymanagerWidgetContainer}>
       <div style={mymanagerWidgetBody}>
-        <div style={mymanagerWidgetBody}>
+        <div style={mymanagerMapbox}>
           <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyBVrhAX-Kht3yDvmUCQHqMSeB1Qd7XVFq8" }}
             defaultCenter={pos}
