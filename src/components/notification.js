@@ -94,9 +94,9 @@ export const NotificationWrapper = ({settings, notification}) => {
           </GoogleMapReact>
         </div>
         <div style={{...mymanagerTextContent, ...mymanagerTruncate}}>
-          <h2 style={{...mymanagerTitle, ...mymanagerTruncate, margin: {value: 0, important: true}}}>{info.header}</h2>
-          <p style={{...mymanagerEventContent, ...mymanagerTruncate, margin: {value: 0, important: true}}}>{info.body}</p>
-          <p style={{...mymanagerCompany, ...mymanagerTruncate, margin: {value: 0, important: true}}}>{info.footer}</p>
+          <h2 style={{...mymanagerTitle, ...mymanagerTruncate}}>{info.header}</h2>
+          <p style={{...mymanagerEventContent, ...mymanagerTruncate}}>{info.body}</p>
+          <p style={{...mymanagerCompany, ...mymanagerTruncate}}>{info.footer}</p>
         </div>
       </div>
     </div>
