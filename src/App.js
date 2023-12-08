@@ -85,7 +85,10 @@ function App() {
 
   useEffect(() => {
     if (notification) {
-      setTimeout(() => setNotification(null), 6000)
+      setTimeout(() => {
+        console.log("====")
+        setNotification(null)
+      }, 6000)
       return () => clearTimeout()
     }
   }, [notification])
