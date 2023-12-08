@@ -69,9 +69,8 @@ function App() {
   ///////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     socket.connect();
-  
+
     const onAddActivityEvent = (data) => {
-      console.log("=**==received=**==", data);
       setNotification({...data})
     }
     socket.on('added-activity', onAddActivityEvent)
@@ -80,20 +79,19 @@ function App() {
     }
   }, [socket])
 
-  console.log("====settings ======", ntfsetting)
-  console.log("====notifications ======", notification)
   /////////////////////////////////////////////////////////////////////////////
-
+  ////////////////// display and hide notification for 6s /////////////////////
+  /////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (notification) {
       setTimeout(() => {
-        console.log("====")
         setNotification(null)
       }, 6000)
       return () => clearTimeout()
     }
   }, [notification])
 
+  
   if (ntfsetting && notification) {
     const {recent_activity, live_visitor_activity, hot_stake_activity} = ntfsetting
     if (!recent_activity.status && !live_visitor_activity.status && !hot_stake_activity.status) {

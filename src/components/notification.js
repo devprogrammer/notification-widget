@@ -18,8 +18,6 @@ export const NotificationWrapper = ({settings, notification}) => {
   const [pos, setPos] = useState(null)
 
   useEffect(() => {
-    if (!notification) 
-      return;
     const _pos = getLatLng(notification.position)
     if (_pos)
       setPos({..._pos})
