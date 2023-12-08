@@ -73,6 +73,8 @@ function App() {
     const onAddActivityEvent = (data) => {
       console.log("=**==received=**==", data);
       setNotification({...data})
+      setTimeout(() => setNotification(null), 5000)
+      return () => clearTimeout()
     }
     socket.on('added-activity', onAddActivityEvent)
     return () => {
