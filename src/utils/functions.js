@@ -27,7 +27,7 @@ export const filterActiveNotifications = (notificationArray, currentUrl) => {
 
 //   const matchedNotification = filteredArr?.reduce((accumulator, n) => {
 //     const urls = n.socialUrls
-//     const res = urls.find((_u) => _u.url === 'http://localhost:3001/organizations');
+//     const res = urls.find((_u) => _u.campaignName === 'r');
 //     if (res) {
 //       return n
 //     }

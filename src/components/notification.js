@@ -48,27 +48,18 @@ export const NotificationWrapper = ({settings, notification}) => {
     }
   }, [notification])
 
-  // Return map bounds based on list of places
-  // const getMapBounds = (map, maps, places) => {
-  //   const bounds = new maps.LatLngBounds();
+  // const initializeCurrent = (lat, lng) => {
+  //   let currGeocode = new googleMapReact.maps.Geocoder()
 
-  //   places.forEach((place) => {
-  //     bounds.extend(new maps.LatLng(
-  //       place.geometry.location.lat,
-  //       place.geometry.location.lng,
-  //     ));
-  //   });
-  //   return bounds;
-  // };
-
-
-  // const apiIsLoaded = (map, maps, places) => {
-  //   // Get bounds by our places
-  //   const bounds = getMapBounds(map, maps, places);
-  //   // Fit map to bounds
-  //   map.fitBounds(bounds);
-  //   // Bind the resize listener
-  // };
+  //   if (!!lat && !!lng) {
+  //     let myLatLng = new googleMapReact.maps.LatLng(lat, lng);
+  //     return getCurrentAddress(myLatLng)
+  //   }
+  // } 
+  const apiIsLoaded = (map, maps) => {
+    console.log("==map===", map)
+    console.log("==maps===", maps)
+  }
   
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   if (!info) return <></>
@@ -103,13 +94,14 @@ export const NotificationWrapper = ({settings, notification}) => {
             bootstrapURLKeys={{ key: "AIzaSyBUSVulzSzbfl45dgmM8lWUQanfMz4Fb9o" }}
             defaultCenter={pos}
             defaultZoom={11}
-            // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, places)}
+            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
             style={{borderRadius: "50%"}}
           >
             <AnyReactComponent
               lat={pos.lat}
               lng={pos.lng}
-              text="City"
+              // text={() => initializeCurrent(pos.lat, pos.lng)}
+              text="city"
             />
           </GoogleMapReact>
         </div>
