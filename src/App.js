@@ -81,6 +81,7 @@ function App() {
   }, [socket])
 
   console.log("====settings ======", ntfsetting)
+  console.log("====notifications ======", notification)
   /////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
@@ -93,7 +94,7 @@ function App() {
     }
   }, [notification])
 
-  if (ntfsetting) {
+  if (ntfsetting && notification) {
     const {recent_activity, live_visitor_activity, hot_stake_activity} = ntfsetting
     if (!recent_activity.status && !live_visitor_activity.status && !hot_stake_activity.status) {
       return <></>
