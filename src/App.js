@@ -23,7 +23,11 @@ function App() {
     const { data } = res.data;
     const n_info = filterActiveNotifications(data, currentUrl)
   
-    if (!n_info) return setNotification(null);
+    if (!n_info) {
+      setNtfsetting(null)
+      setNotification(null);
+      return
+    } 
     const _notification = n_info.notification;
     setNtfsetting({..._notification})
   }, [currentUrl, pid])
