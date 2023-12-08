@@ -17,11 +17,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "webpack serve",
-    "build": "webpack",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:widget": "parcel build src/index.js --no-source-maps"
+    "build:widget": "parcel build src/index.js --no-scope-hoist"
   },
   "eslintConfig": {
     "extends": [
