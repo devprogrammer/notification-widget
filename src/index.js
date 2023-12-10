@@ -5,11 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-const root = ReactDOM.createRoot(document.getElementById('gamestop'));
+const root = ReactDOM.createRoot(document.getElementById('my_notification_widget'));
 
 root.render(
   <React.StrictMode>
-    {/* <App symbol={widgetDiv?.dataset.symbol}/> */}
       <App />
   </React.StrictMode>
 );
