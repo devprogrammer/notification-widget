@@ -18,25 +18,6 @@ export const filterActiveNotifications = (notificationArray, currentUrl) => {
   return matchedNotification;
 }
 
-// export const filterActiveNotifications = (notificationArray, currentUrl) => {
-//   // check whether param is an array or not.
-//   if (!Array.isArray(notificationArray) || notificationArray?.length < 1)
-//     return null
-
-//   const filteredArr = notificationArray.filter((_n) => _n.status.toLowerCase() === 'active' && _n.socialUrls.length > 0);
-
-//   const matchedNotification = filteredArr?.reduce((accumulator, n) => {
-//     const urls = n.socialUrls
-//     const res = urls.find((_u) => _u.campaignName === 'r');
-//     if (res) {
-//       return n
-//     }
-//     return accumulator
-//   }, null)
-
-//   return matchedNotification;
-// }
-
 export const getLatLng = (pos) => {
   if (!!pos) {
     const posArr = pos.split("+");
